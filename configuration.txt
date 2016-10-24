@@ -1,0 +1,26 @@
+sudo mongod --port 27017 --dbpath /data/rs0-0 --replSet rs0 --smallfiles --oplogSize 128
+sudo mongod --port 27018 --dbpath /data/rs0-1 --replSet rs0 --smallfiles --oplogSize 128
+sudo mongod --port 27019 --dbpath /data/rs0-2 --replSet rs0 --smallfiles --oplogSize 128
+
+mongo --port 27017
+
+config = {
+  "_id" : "rs0",
+  "version" : 1,
+  "members" : [
+    {
+      "_id" : 0,
+      "host" : "localhost:27017"
+    },
+    {
+      "_id" : 1,
+      "host" : "localhost:27018"
+    },
+    {
+      "_id" : 2,
+      "host" : "localhost:27019"
+    }
+  ]
+}
+
+rs.initiate()
