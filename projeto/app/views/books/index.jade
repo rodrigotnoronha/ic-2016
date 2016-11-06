@@ -1,0 +1,16 @@
+extends ../layouts/default
+
+block main
+  h1= title
+
+block content
+  - if (books.length)
+    - each book in books
+      include book
+
+    - if (pages > 1)
+      ul.pagination
+        != createPagination(pages, page)
+  - else
+    h4.muted No books.&nbsp;
+      a(href="/books/new") create one

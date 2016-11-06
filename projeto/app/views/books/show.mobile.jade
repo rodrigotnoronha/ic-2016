@@ -1,0 +1,41 @@
+extends ../layouts/mobile
+
+
+block main
+  h1= book.title
+
+block content
+  .row
+    .span9
+      p=book.description
+      .meta.muted
+        - var name = book.user.name ? book.user.name : book.user.username
+        p Author -&nbsp;
+          a(href="/users/"+book.user._id)= name
+        p.muted= formatDate(book.createdAt, "%b %d, %Y at %I:%M %p")
+        - if (book.tags)
+          .tags
+            - each tag in book.tags.split(',')
+              a.tag(href="/tags/"+tag)
+                i.icon-tags
+                |  #{tag}
+              | &nbsp;&nbsp;
+    .span3
+      - if (!book.isNew && book.image && book.image.files && book.image.files.length)
+        img(src=book.image.cdnUri + '/mini_' + book.image.files[0])
+
+  p
+    br
+    form.center.form-inline.confirm(action="/books/"+book.id, method="post")
+      input(type='hidden', name='_csrf', value="#{csrf_token}")
+      a.btn(href='/books/'+book._id+'/edit', title="edit") Edit
+      | &nbsp;&nbsp;
+      input(type="hidden", name="_method", value="DELETE")
+      button.btn.btn-danger(type="submit") delete
+
+  p
+    br
+    h3 Comments
+    - each comment in book.comments
+      include ../comments/comment
+    include ../comments/form

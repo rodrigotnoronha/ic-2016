@@ -1,0 +1,47 @@
+extends ../layouts/default
+
+block main
+  h1= title
+
+block content
+  - var action = '/books'
+  - action += book.isNew? '' : '/' + book.id
+
+  .row
+    .col-md-8
+      form.form-horizontal(method="post", action=action, enctype="multipart/form-data", role="form")
+
+        input(type="hidden", name="_csrf", value="#{csrf_token}")
+
+        - if (!book.isNew)
+          input(type="hidden", name="_method", value="PUT")
+
+        .form-group
+          label.col-sm-2.control-label(for='title') Title
+          .col-sm-10
+            input.form-control#title(type='text', name="title", value=book.title, placeholder='Enter the title')
+
+        .form-group
+          label.col-sm-2.control-label(for='file') Image
+          .col-sm-10
+            input.form-control#file(type='file', name="image")
+
+        .form-group
+          label.col-sm-2.control-label(for='desc') Description
+          .col-sm-10
+            textarea.form-control#desc(rows="5", name="description", placeholder='Enter the book description')=book.description
+
+        .form-group
+          label.col-sm-2.control-label(for='tags') Tags
+          .col-sm-10
+            input.form-control#tags(type='text', name="tags", value=book.tags, placeholder='Enter the tags')
+
+        .form-group
+          .col-sm-offset-2.col-sm-10
+            button.btn.btn-primary(type='submit') Save
+            | &nbsp;
+            a.btn(href='/books', title="cancel") Cancel
+
+    .col-md-4
+      - if (!book.isNew && book.image && book.image.files && book.image.files.length)
+        img(src=book.image.cdnUri + "/mini_" + book.image.files[0])

@@ -1,0 +1,40 @@
+extends ../layouts/default
+
+block main
+  h1= book.title
+
+block content
+  .row
+    .col-md-8
+      p=book.description
+      .meta
+        - if (book.user)
+          - var name = book.user.name ? book.user.name : book.user.username
+          p Author :&nbsp;
+            a(href="/users/"+book.user._id)= name
+
+        - if (book.tags)
+          p Tags &nbsp;
+            - each tag in book.tags.split(',')
+              i.muted.fa.fa-tag &nbsp;
+              a.tag(href="/tags/"+tag)= tag
+              | &nbsp;&nbsp;
+
+        p.muted= formatDate(book.createdAt, "%b %d, %Y at %I:%M %p")
+
+    .col-md-4
+      - if (!book.isNew && book.image && book.image.files && book.image.files.length)
+        img(src=book.image.cdnUri + '/mini_' + book.image.files[0])
+
+  form(action="/books/"+book.id, method="post", onsubmit="return confirm('Are you sure?')")
+    input(type='hidden', name='_csrf', value="#{csrf_token}")
+    a.btn.btn-default(href='/books/'+book._id+'/edit', title="edit") Edit
+    | &nbsp;
+    input(type="hidden", name="_method", value="DELETE")
+    button.btn.btn-danger(type="submit") Delete
+
+  br
+  h3 Comments
+  - each comment in book.comments
+    include ../comments/comment
+  include ../comments/form

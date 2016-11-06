@@ -1,0 +1,19 @@
+extends ../layouts/default
+
+block main
+  h1= title
+  - var action = '/users/' + user.id
+
+block content
+  form.form-horizontal.form-signin(action=action, enctype="multipart/form-data", method="post", role="form")
+    input(type='hidden', name='_csrf', value="#{csrf_token}")
+
+    input(type="hidden", name="_method", value="PUT")
+
+    input#name.form-control(type='text', name="name", placeholder='Full name', value=user.name)
+
+    input#username.form-control(type='text', name="username", placeholder='Username', value=user.username)
+
+    br
+    .text-center
+      button.btn.btn-primary(type='submit') Gravar
