@@ -105,14 +105,17 @@ BookSchema.methods = {
       body: comment.body,
       user: user._id
     });
+    console.log(user,comment);
 
     if (!this.user.email) this.user.email = 'email@product.com';
 
-    notify.comment({
-      Book: this,
-      currentUser: user,
-      comment: comment.body
-    });
+    //To send email notifications
+
+    // notify.comment({
+    //   Book: this,
+    //   currentUser: user,
+    //   comment: comment.body
+    // });
 
     return this.save();
   },

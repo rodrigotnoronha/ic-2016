@@ -26,7 +26,7 @@ exports.load = function (req, res, next, id) {
 exports.create = async(function* (req, res) {
   const book = req.book;
   yield book.addComment(req.user, req.body);
-  respondOrRedirect({ res }, `/books/${book._id}`, book.comments[0]);
+  respondOrRedirect({ req, res }, `/books/${book._id}`, book.comments[0]);
 });
 
 /**

@@ -23,6 +23,8 @@ const models = join(__dirname, 'app/models');
 const port = process.env.PORT || 3000;
 const app = express();
 
+mongoose.Promise = global.Promise;
+
 /**
  * Expose
  */
