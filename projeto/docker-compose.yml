@@ -4,6 +4,8 @@ mongo3:
   expose:
     - "27017"
     - "28017"
+  ports:
+    - "3019:27017"
   restart: always
   entrypoint: [ "/usr/bin/mongod", "--replSet", "rs", "--rest", "--httpinterface" ]
 
@@ -13,6 +15,8 @@ mongo2:
   expose:
     - "27017"
     - "28017"
+  ports:
+    - "3018:27017"
   restart: always
   entrypoint: [ "/usr/bin/mongod", "--replSet", "rs", "--rest", "--httpinterface" ]
 

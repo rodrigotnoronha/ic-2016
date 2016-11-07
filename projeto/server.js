@@ -51,9 +51,14 @@ function listen () {
 }
 
 function connect () {
-  var options = { server: { socketOptions: { keepAlive: 1 } } };
   var opts = {
-    replSet: {rs_name: 'rs0'}
+    replSet: {rs_name: 'rs'},
+    server: {
+      poolSize: 3,
+      socketOptions: {
+        keepAlive: 1
+      }
+    }
   };
-  return mongoose.connect('mongodb://localhost:3017/repl', opts).connection;
+  return mongoose.connect('mongodb://localhost:3017/repl,localhost:3018,localhost:3019', opts).connection;
 }
