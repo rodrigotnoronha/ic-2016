@@ -62,5 +62,5 @@ function connect () {
       }
     }
   };
-  return mongoose.connect('mongodb://localhost:3017/repl,localhost:3018,localhost:3019', opts).connection;
+  return mongoose.connect(config.db, opts).connection;
 }

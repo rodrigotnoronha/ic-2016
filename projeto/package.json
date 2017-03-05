@@ -1,6 +1,6 @@
 {
-  "name": "nodejs-express-mongoose-demo",
-  "description": "A demo app illustrating the usage of express, mongoose, passportjs, swig and other modules in nodejs",
+  "name": "app",
+  "description": "",
   "keywords": [
     "express",
     "mongoose",
@@ -8,12 +8,10 @@
     "passport",
     "demo"
   ],
-  "version": "4.0.0",
-  "private": false,
-  "author": "Madhusudhan Srinivasa <madhums8@gmail.com> (http://madhums.github.com)",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/madhums/node-express-mongoose-demo.git"
+    "url": ""
   },
   "license": "MIT",
   "engines": {
