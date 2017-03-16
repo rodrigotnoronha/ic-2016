@@ -54,3 +54,13 @@ exports.comment = {
     }
   }
 };
+
+exports.admin_dbs = {
+  hasAuthorization: function (req, res, next) {
+    if (req.user.admin === true) {
+      req.flash('info', 'You are not authorized');
+      return res.redirect('/');
+    }
+    next();
+  }
+};

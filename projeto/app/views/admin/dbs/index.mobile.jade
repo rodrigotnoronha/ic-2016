@@ -1,0 +1,31 @@
+extends ../../layouts/mobile
+
+block main
+  h1= title
+
+block content
+  - each book in books
+    .book
+      h3
+        a(href='/books/'+book._id, title=book.title) #{book.title}
+      p= book.description
+
+      .meta.muted
+        span= formatDate(book.createdAt)
+        | &nbsp; - &nbsp;
+        span Author &nbsp;
+
+        - var name = book.user.name ? book.user.name : book.user.username
+
+        a(href="/users/"+book.user._id)= name
+        &nbsp; - &nbsp;
+        - if (book.tags)
+          - each tag in book.tags.split(',')
+            | &nbsp;
+            a.tag(href="/tags/"+tag)
+              i.icon-tags
+              |  #{tag}
+
+  - if (pages > 1)
+    ul.pagination
+      != createPagination(pages, page)

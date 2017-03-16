@@ -25,6 +25,7 @@ const UserSchema = new Schema({
   email: { type: String, default: '' },
   username: { type: String, default: '' },
   provider: { type: String, default: '' },
+  admin: { type: Boolean, default: false },
   hashed_password: { type: String, default: '' },
   salt: { type: String, default: '' },
   authToken: { type: String, default: '' },

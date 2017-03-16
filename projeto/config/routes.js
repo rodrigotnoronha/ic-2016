@@ -7,6 +7,7 @@
 const users = require('../app/controllers/users');
 const books = require('../app/controllers/books');
 const comments = require('../app/controllers/comments');
+const admin_dbs = require('../app/controllers/admin/dbs');
 const tags = require('../app/controllers/tags');
 const auth = require('./middlewares/authorization');
 
@@ -17,6 +18,9 @@ const auth = require('./middlewares/authorization');
 const bookAuth = [auth.requiresLogin, auth.book.hasAuthorization];
 const commentAuth = [auth.requiresLogin, auth.comment.hasAuthorization];
 const userAuth = [auth.requiresLogin, auth.user.hasAuthorization];
+
+const adminDbsAuth = [auth.requiresLogin, auth.admin_dbs.hasAuthorization];
+
 
 
 const fail = {
@@ -94,6 +98,9 @@ module.exports = function (app, passport) {
 
   // tag routes
   app.get('/tags/:tag', tags.index);
+
+  // # ADMIN ROUTES
+   app.get('/admin/dbs', admin_dbs.index);
 
 
   /**
