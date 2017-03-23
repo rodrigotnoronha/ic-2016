@@ -4,10 +4,12 @@ block main
   h1= title
 
 block content
-  - if (dbs.length)
+  - if (dbs.length > 0)
     - each db in dbs
       include db
-
+  - if (child)
+    h3
+      a #{JSON.stringify(child)}
     - if (pages > 1)
       ul.pagination
         != createPagination(pages, page)

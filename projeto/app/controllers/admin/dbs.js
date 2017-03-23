@@ -8,6 +8,7 @@ const { wrap: async } = require('co');
 const only = require('only');
 const { respond, respondOrRedirect } = require('../../utils');
 const config = require('../../../config');
+const spawn = require('child_process').spawn;
 const assign = Object.assign;
 const MongoClient = require('mongodb').MongoClient,
 test = require('assert');
@@ -47,12 +48,46 @@ exports.index = async(function* (req, res) {
   const dbs = databases;
   const count = databases.length;
 
-  debugger;
+  var child = {};
+
+  const docker = spawn('docker', ['exec', '-i', 'projeto_mongo1_1']);
+
+  // const cli = spawn('mongo', ['--eval', '\'rs.status();\'']);
+
+  // docker.stdout.on('data', function(data) {
+  //   mongo.stdin.write(data);
+  // });
+
+  // docker.stderr.on('data', function(data) {
+  //   console.log(`docker stderr: ${data}`);
+  // });
+
+  // docker.on('close', function(code) {
+  //   if (code !== 0) {
+  //     console.log(`docker process exited with code ${code}`);
+  //   }
+  //   mongo.stdin.end();
+  // });
+
+  // mongo.stdout.on('data', function(data) {
+  //   console.log(data.toString());
+  // });
+
+  // mongo.stderr.on('data', function(data) {
+  //   console.log(`mongo stderr: ${data}`);
+  // });
+
+  // mongo.on('close', function(code) {
+  //   if (code !== 0) {
+  //     console.log(`grep process exited with code ${code}`);
+  //   }
+  // });
 
   respond(res, 'admin/dbs/index', {
     title: 'Dbs',
     dbs: dbs,
     page: page + 1,
+    child: child,
     pages: Math.ceil(count / limit)
   });
 });
