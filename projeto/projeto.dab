@@ -1,0 +1,55 @@
+{
+  "Services": {
+    "mongo1": {
+      "Command": [
+        "/usr/bin/mongod", 
+        "--replSet", 
+        "rs", 
+        "--rest", 
+        "--httpinterface"
+      ], 
+      "Image": "mongo@sha256:3d4537f996bc28a6c6b694e22f46316c0629703420de60e8f46285ce1fe69260", 
+      "Networks": [], 
+      "Ports": [
+        {
+          "Port": 27017, 
+          "Protocol": "tcp"
+        }, 
+        {
+          "Port": 28017, 
+          "Protocol": "tcp"
+        }
+      ]
+    }, 
+    "mongo2": {
+      "Command": [
+        "/usr/bin/mongod", 
+        "--replSet", 
+        "rs", 
+        "--rest", 
+        "--httpinterface"
+      ], 
+      "Image": "mongo@sha256:3d4537f996bc28a6c6b694e22f46316c0629703420de60e8f46285ce1fe69260", 
+      "Networks": [], 
+      "Ports": [
+        {
+          "Port": 27017, 
+          "Protocol": "tcp"
+        }, 
+        {
+          "Port": 28017, 
+          "Protocol": "tcp"
+        }
+      ]
+    }, 
+    "mongosetup": {
+      "Command": [
+        "bash", 
+        "/scripts/mongosetup.sh"
+      ], 
+      "Image": "mongo@sha256:3d4537f996bc28a6c6b694e22f46316c0629703420de60e8f46285ce1fe69260", 
+      "Networks": []
+    }
+  }, 
+  "Version": "0.1"
+}

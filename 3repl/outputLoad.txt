@@ -1,0 +1,30 @@
+YCSB Client 0.1
+Command line: -db com.yahoo.ycsb.db.MongoDbClient -s -P workloads/workloada -p mongodb.url=mongodb://localhost:3017/repl,localhost:3018,localhost:3019 -load
+01:42:34.592 [Thread-1] INFO  org.mongodb.driver.cluster - Cluster created with settings {hosts=[localhost:3017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+01:42:34.651 [Thread-1] DEBUG org.mongodb.driver.cluster - Updating cluster description to  {type=UNKNOWN, servers=[{address=localhost:3017, type=UNKNOWN, state=CONNECTING}]
+mongo client connection created with mongodb://localhost:3017/repl,localhost:3018,localhost:3019
+01:42:34.668 [Thread-1] INFO  org.mongodb.driver.cluster - No server chosen by PrimaryServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, all=[ServerDescription{address=localhost:3017, type=UNKNOWN, state=CONNECTING}]}. Waiting for 30000 ms before timing out
+01:42:34.675 [cluster-ClusterId{value='58db3b3afb302762c6c9e278', description='null'}-localhost:3017] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:1, serverValue:14}] to localhost:3017
+01:42:34.675 [cluster-ClusterId{value='58db3b3afb302762c6c9e278', description='null'}-localhost:3017] DEBUG org.mongodb.driver.cluster - Checking status of localhost:3017
+01:42:34.677 [cluster-ClusterId{value='58db3b3afb302762c6c9e278', description='null'}-localhost:3017] INFO  org.mongodb.driver.cluster - Monitor thread successfully connected to server with description ServerDescription{address=localhost:3017, type=REPLICA_SET_PRIMARY, state=CONNECTED, ok=true, version=ServerVersion{versionList=[3, 4, 2]}, minWireVersion=0, maxWireVersion=5, electionId=7fffffff0000000000000002, maxDocumentSize=16777216, roundTripTimeNanos=882003, setName='rs', canonicalAddress=172.17.0.4:27017, hosts=[172.17.0.4:27017], passives=[172.17.0.2:27017, 172.17.0.3:27017], arbiters=[], primary='172.17.0.4:27017', tagSet=TagSet{[]}}
+01:42:34.678 [cluster-ClusterId{value='58db3b3afb302762c6c9e278', description='null'}-localhost:3017] DEBUG org.mongodb.driver.cluster - Updating cluster description to  {type=REPLICA_SET, servers=[{address=localhost:3017, type=REPLICA_SET_PRIMARY, roundTripTime=0,9 ms, state=CONNECTED}]
+01:42:34.682 [Thread-1] INFO  org.mongodb.driver.connection - Opened connection [connectionId{localValue:2, serverValue:15}] to localhost:3017
+01:42:34.689 [Thread-1] DEBUG org.mongodb.driver.protocol.insert - Inserting 1 documents into namespace repl,localhost:3018,localhost:3019.usertable on connection [connectionId{localValue:2, serverValue:15}] to server localhost:3017
+01:42:34.718 [Thread-1] INFO  org.mongodb.driver.connection - Closed connection [connectionId{localValue:2, serverValue:15}] to localhost:3017 because the pool has been closed.
+01:42:34.718 [Thread-1] DEBUG org.mongodb.driver.connection - Closing connection connectionId{localValue:2, serverValue:15}
+01:42:34.719 [cluster-ClusterId{value='58db3b3afb302762c6c9e278', description='null'}-localhost:3017] DEBUG org.mongodb.driver.connection - Closing connection connectionId{localValue:1, serverValue:14}
+[OVERALL], RunTime(ms), 1841.0
+[OVERALL], Throughput(ops/sec), 543.1830526887561
+[CLEANUP], Operations, 1.0
+[CLEANUP], AverageLatency(us), 1533.0
+[CLEANUP], MinLatency(us), 1533.0
+[CLEANUP], MaxLatency(us), 1533.0
+[CLEANUP], 95thPercentileLatency(us), 1533.0
+[CLEANUP], 99thPercentileLatency(us), 1533.0
+[INSERT], Operations, 1000.0
+[INSERT], AverageLatency(us), 1247.153
+[INSERT], MinLatency(us), 279.0
+[INSERT], MaxLatency(us), 317951.0
+[INSERT], 95thPercentileLatency(us), 1775.0
+[INSERT], 99thPercentileLatency(us), 3433.0
+[INSERT], Return=OK, 1000
